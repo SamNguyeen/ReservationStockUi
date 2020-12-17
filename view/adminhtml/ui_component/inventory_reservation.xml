@@ -101,5 +101,10 @@
                 <label translate="true">Additional Data</label>
             </settings>
         </column>
+        <actionsColumn name="actions" class="Magenest\ReservationStockUi\Ui\Component\Listing\Columns\ReservationActions" sortOrder="200">
+            <settings>
+                <indexField>reservation_id</indexField>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>
