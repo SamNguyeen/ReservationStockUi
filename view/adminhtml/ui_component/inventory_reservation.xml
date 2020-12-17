@@ -71,6 +71,7 @@
                 <filter>textRange</filter>
                 <label translate="true">Reservation ID</label>
                 <dataType>number</dataType>
+                <sorting>desc</sorting>
             </settings>
         </column>
         <column name="stock_id" component="Magento_Ui/js/grid/columns/select">

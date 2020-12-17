@@ -19,4 +19,9 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\InventorySalesAdminUi\Ui\Component\Listing\Column\SalableQuantity">
+        <arguments>
+            <argument name="getSalableQuantityDataBySku" xsi:type="object">Magenest\ReservationStockUi\Model\GetSalableQuantityDataBySku</argument>
+        </arguments>
+    </type>
 </config>
