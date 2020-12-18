@@ -12,13 +12,21 @@
 
 namespace Magenest\ReservationStockUi\Model;
 
+use Magenest\ReservationStockUi\Model\Source\LogType;
+use Magenest\ReservationStockUi\Api\Data\InventoryLogInterface;
 use Magenest\ReservationStockUi\Api\InventoryLogManagementInterface;
 
 class InventoryLogManagement implements InventoryLogManagementInterface
 {
+    const LOG_BATCH = 500;
+
     protected $helper;
 
     protected $logResource;
+
+    private $_logItems = [];
+
+    private $_logged = [];
 
     /**
      * InventoryLogManagement constructor.
@@ -34,13 +42,56 @@ class InventoryLogManagement implements InventoryLogManagementInterface
         $this->logResource = $logResource;
     }
 
-    public function logQtyChange()
+    public function logQtyChange($items, $comment = null)
     {
-        // TODO: Implement logQtyChange() method.
+        if (!is_array($items)) {
+            return;
+        }
+        $this->clean();
+        foreach ($items as $item) {
+            /** @var \Magento\InventoryApi\Api\Data\SourceItemInterface $item */
+            $prepared = $this->prepareQty($item, $comment);
+            $hash = hash('sha256', $this->helper->serialize($prepared));
+            if (in_array($hash, $this->_logged)) {
+                continue;
+            }
+            $this->_logItems[] = $prepared;
+            $this->_logged[] = $hash;
+            if (count($this->_logItems) >= self::LOG_BATCH) {
+                $this->logResource->saveBatch($this->_logItems);
+                $this->clean();
+            }
+        }
+        if (!empty($this->_logItems)) {
+            $this->logResource->saveBatch($this->_logItems);
+        }
     }
 
     public function logReservationChange()
     {
         // TODO: Implement logReservationChange() method.
+    }
+
+    /**
+     * @param \Magento\InventoryApi\Api\Data\SourceItemInterface $item
+     * @param $comment
+     *
+     * @return array
+     */
+    protected function prepareQty($item, $comment)
+    {
+        return [
+            InventoryLogInterface::LOG_TYPE => LogType::QTY,
+            InventoryLogInterface::STOCK_ID => null,
+            InventoryLogInterface::SOURCE_CODE => $item->getSourceCode(),
+            InventoryLogInterface::SKU => $item->getSku(),
+            InventoryLogInterface::QUANTITY => $item->getQuantity(),
+            InventoryLogInterface::COMMENT => $comment,
+        ];
+    }
+
+    private function clean()
+    {
+        $this->_logItems = [];
     }
 }

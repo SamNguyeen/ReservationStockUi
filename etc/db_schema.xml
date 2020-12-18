@@ -15,7 +15,8 @@
     <table name="inventory_reservation_log" resource="default" engine="innodb">
         <column xsi:type="int" name="log_id" unsigned="true" nullable="false" identity="true" comment="Log ID"/>
         <column xsi:type="int" name="log_type" unsigned="true" nullable="true" comment="Log Type"/>
-        <column xsi:type="int" name="stock_id" unsigned="true" nullable="false" identity="false" comment="Stock ID"/>
+        <column xsi:type="int" name="stock_id" unsigned="true" nullable="true" identity="false" comment="Stock ID"/>
+        <column xsi:type="varchar" name="source_code" length="255" nullable="true" comment="Source Code"/>
         <column xsi:type="varchar" name="sku" nullable="false" length="64" comment="SKU"/>
         <column xsi:type="decimal" name="quantity" scale="4" precision="10" unsigned="false" nullable="false" default="0" comment="Qty"/>
         <column xsi:type="varchar" name="comment" length="255" nullable="true" comment="Action Comment"/>

@@ -19,6 +19,16 @@ class InventoryLog extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected $_idFieldName = 'log_id';
 
     /**
+     * @param array $logItems
+     *
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function saveBatch(array $logItems)
+    {
+        $this->getConnection()->insertOnDuplicate($this->getMainTable(), $logItems);
+    }
+
+    /**
      * @inheritDoc
      */
     protected function _construct()

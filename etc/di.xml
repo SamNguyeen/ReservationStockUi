@@ -26,4 +26,7 @@
         </arguments>
     </type>
     <preference for="Magenest\ReservationStockUi\Api\InventoryLogManagementInterface" type="Magenest\ReservationStockUi\Model\InventoryLogManagement" />
+    <type name="Magento\InventoryApi\Api\SourceItemsSaveInterface">
+        <plugin name="log_qty_change" type="Magenest\ReservationStockUi\Plugin\Magento\InventoryApi\Api\SourceItemsSaveInterface" />
+    </type>
 </config>

@@ -14,7 +14,13 @@ namespace Magenest\ReservationStockUi\Api;
 
 interface InventoryLogManagementInterface
 {
-    public function logQtyChange();
+    /**
+     * @param array $items
+     * @param null $comment
+     *
+     * @return void
+     */
+    public function logQtyChange($items, $comment = null);
 
     public function logReservationChange();
 }
