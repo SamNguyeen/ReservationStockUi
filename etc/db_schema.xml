@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_ReservationStockUi extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package Magenest_ReservationStockUi
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="inventory_reservation_log" resource="default" engine="innodb">
+        <column xsi:type="int" name="log_id" unsigned="true" nullable="false" identity="true" comment="Log ID"/>
+        <column xsi:type="int" name="log_type" unsigned="true" nullable="true" comment="Log Type"/>
+        <column xsi:type="int" name="stock_id" unsigned="true" nullable="false" identity="false" comment="Stock ID"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="64" comment="SKU"/>
+        <column xsi:type="decimal" name="quantity" scale="4" precision="10" unsigned="false" nullable="false" default="0" comment="Qty"/>
+        <column xsi:type="varchar" name="comment" length="255" nullable="true" comment="Action Comment"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="log_id"/>
+        </constraint>
+    </table>
+</schema>

@@ -10,14 +10,14 @@
  * @package Magenest_ReservationStockUi
  */
 
-namespace Magenest\ReservationStockUi\Controller\Adminhtml\Reservation;
+namespace Magenest\ReservationStockUi\Controller\Adminhtml\Log;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magenest\ReservationStockUi\Controller\Adminhtml\Inventory;
 
 class Index extends Inventory implements HttpGetActionInterface
 {
-    const ADMIN_RESOURCE = 'Magenest_ReservationStockUi::catalog_reservation';
+    const ADMIN_RESOURCE = 'Magenest_ReservationStockUi::inventory_log';
 
     /**
      * @inheritDoc
@@ -25,7 +25,7 @@ class Index extends Inventory implements HttpGetActionInterface
     public function execute()
     {
         $resultPage = $this->_initAction();
-        $resultPage->getConfig()->getTitle()->prepend(__('Reservation Stock'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Inventory Log'));
 
         return $resultPage;
     }

@@ -16,6 +16,7 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="inventory_reservation_data_source" xsi:type="string">Magenest\ReservationStockUi\Model\ResourceModel\Reservation\Grid\Collection</item>
+                <item name="inventory_log_data_source" xsi:type="string">Magenest\ReservationStockUi\Model\ResourceModel\InventoryLog\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -24,4 +25,5 @@
             <argument name="getSalableQuantityDataBySku" xsi:type="object">Magenest\ReservationStockUi\Model\GetSalableQuantityDataBySku</argument>
         </arguments>
     </type>
+    <preference for="Magenest\ReservationStockUi\Api\InventoryLogManagementInterface" type="Magenest\ReservationStockUi\Model\InventoryLogManagement" />
 </config>

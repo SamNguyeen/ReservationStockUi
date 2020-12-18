@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_ReservationStockUi extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package Magenest_ReservationStockUi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="cataloginventory">
+            <group id="reservation" translate="label" type="text" sortOrder="250" showInDefault="1">
+                <label>Reservation Stock</label>
+                <field id="enabled_log" translate="label" type="select" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Enable Qty / Reservation Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="log_interval" translate="label" type="text" sortOrder="2" showInDefault="1" canRestore="1">
+                    <label>Keep Log Time (days)</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

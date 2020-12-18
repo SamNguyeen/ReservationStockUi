@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_ReservationStockUi extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package Magenest_ReservationStockUi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <cataloginventory>
+            <reservation>
+                <enabled_log>1</enabled_log>
+                <log_interval>60</log_interval>
+            </reservation>
+        </cataloginventory>
+    </default>
+</config>

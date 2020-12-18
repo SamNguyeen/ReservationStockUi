@@ -18,6 +18,7 @@
                 <resource id="Magento_Catalog::catalog" title="Catalog" translate="title" sortOrder="30">
                     <resource id="Magento_Catalog::catalog_inventory" title="Inventory" translate="title" sortOrder="10">
                         <resource id="Magenest_ReservationStockUi::catalog_reservation" title="Reservation Stock" translate="title" sortOrder="30" />
+                        <resource id="Magenest_ReservationStockUi::inventory_log" title="Inventory Log" translate="title" sortOrder="35" />
                     </resource>
                 </resource>
             </resource>
