@@ -29,4 +29,7 @@
     <type name="Magento\InventoryApi\Api\SourceItemsSaveInterface">
         <plugin name="log_qty_change" type="Magenest\ReservationStockUi\Plugin\Magento\InventoryApi\Api\SourceItemsSaveInterface" />
     </type>
+    <type name="Magento\InventoryApi\Api\SourceItemsDeleteInterface">
+        <plugin name="log_qty_change" type="Magenest\ReservationStockUi\Plugin\Magento\InventoryApi\Api\SourceItemsDeleteInterface" />
+    </type>
 </config>

@@ -15,7 +15,7 @@ namespace Magenest\ReservationStockUi\Plugin\Magento\InventoryApi\Api;
 use Magenest\ReservationStockUi\Helper\Helper;
 use Magento\InventoryApi\Api\Data\SourceItemInterface;
 
-class SourceItemsSaveInterface
+class SourceItemsDeleteInterface
 {
     protected $inventoryLog;
 
@@ -44,7 +44,7 @@ class SourceItemsSaveInterface
     }
 
     /**
-     * @param \Magento\InventoryApi\Api\SourceItemsSaveInterface $subject
+     * @param \Magento\InventoryApi\Api\SourceItemsDeleteInterface $subject
      * @param void $result
      * @param SourceItemInterface[] $sourceItems
      *
@@ -52,15 +52,29 @@ class SourceItemsSaveInterface
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterExecute(
-        \Magento\InventoryApi\Api\SourceItemsSaveInterface $subject,
+        \Magento\InventoryApi\Api\SourceItemsDeleteInterface $subject,
         $result,
         array $sourceItems
     ) {
         try {
-            $action = $this->_request->getActionName() ? $this->_request->getFullActionName() : __('Message Queue Update');
+            $action = $this->_request->getFullActionName();
+            $sourceItems = $this->updateSourceDeleteItems($sourceItems);
             $this->inventoryLog->logQtyChange($sourceItems, $action ?: __('Inventory Source Item Save'));
         } catch (\Throwable $e) {
             $this->helper->debug($e);
         }
+    }
+
+    private function updateSourceDeleteItems(array $sourceItems)
+    {
+        $result = [];
+        foreach ($sourceItems as $sourceItem) {
+            /** @var \Magento\InventoryApi\Api\Data\SourceItemInterface $sourceItem */
+            $item = clone $sourceItem;
+            $item->setQuantity(0);
+            $result[] = $item;
+        }
+
+        return $result;
     }
 }
