@@ -23,6 +23,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class Helper extends AbstractHelper
 {
+    const KEY_ENABLE_LOGGING = 'cataloginventory/reservation/enabled_log';
+    const KEY_LOG_KEEP_DAY = 'cataloginventory/reservation/log_interval';
+
     protected $serializer;
 
     protected $_coreRegistry;
@@ -131,5 +134,10 @@ class Helper extends AbstractHelper
         }
 
         return $this->serializer->serialize($string);
+    }
+
+    public function isEnableLog()
+    {
+        return $this->getStoreConfig(self::KEY_ENABLE_LOGGING);
     }
 }

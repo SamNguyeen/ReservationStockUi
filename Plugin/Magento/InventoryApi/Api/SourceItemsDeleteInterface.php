@@ -56,6 +56,9 @@ class SourceItemsDeleteInterface
         $result,
         array $sourceItems
     ) {
+        if (!$this->helper->isEnableLog()) {
+            return;
+        }
         try {
             $action = $this->_request->getFullActionName();
             $sourceItems = $this->updateSourceDeleteItems($sourceItems);

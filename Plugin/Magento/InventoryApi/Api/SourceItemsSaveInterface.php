@@ -56,6 +56,9 @@ class SourceItemsSaveInterface
         $result,
         array $sourceItems
     ) {
+        if (!$this->helper->isEnableLog()) {
+            return;
+        }
         try {
             $action = $this->_request->getActionName() ? $this->_request->getFullActionName() : __('Message Queue Update');
             $this->inventoryLog->logQtyChange($sourceItems, $action ?: __('Inventory Source Item Save'));
