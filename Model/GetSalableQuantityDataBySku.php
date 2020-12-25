@@ -92,7 +92,7 @@ class GetSalableQuantityDataBySku extends \Magento\InventorySalesAdminUi\Model\G
                     'stock_name' => $stock->getName(),
                     'qty' => $isManageStock ? $this->getProductSalableQty->execute($sku, $stockId) : null,
                     'manage_stock' => $isManageStock,
-                    'reservation_name' => __('Reservation Stock'),
+                    'reservation_name' => __('Reservation (%1)', $stock->getName()),
                     'reservation_qty' => $isManageStock ? $this->getReservationsQuantity->execute($sku, $stockId) : null
                 ];
             }

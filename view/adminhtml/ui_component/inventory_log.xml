@@ -61,11 +61,6 @@
                 </param>
             </childDefaults>
         </settings>
-        <selectionsColumn name="ids">
-            <settings>
-                <indexField>reservation_id</indexField>
-            </settings>
-        </selectionsColumn>
         <column name="log_id">
             <settings>
                 <filter>textRange</filter>

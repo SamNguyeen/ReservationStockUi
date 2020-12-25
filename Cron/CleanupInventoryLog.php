@@ -30,14 +30,17 @@ class CleanupInventoryLog
 
     public function execute()
     {
-        if ($this->helper->isEnableLog()) {
+        if (!$this->helper->isEnableLog()) {
             return;
         }
         $connection = $this->logResource->getConnection();
+        $logTable = $connection->getTableName(InventoryLog::INVENTORY_LOG_TABLE);
         $select = $connection->select();
-        $select->from($connection->getTableName(InventoryLog::INVENTORY_LOG_TABLE), '');
-        $select->where('');
+        $select->from($logTable, 'log_id');
+        $sinceDate = $this->helper->getClearPeriod();
+        $select->where('created_at <= ?', $sinceDate);
 
-        $connection->deleteFromSelect($select);
+        $deleteQuery = $connection->deleteFromSelect($select, $logTable);
+        $connection->query($deleteQuery);
     }
 }

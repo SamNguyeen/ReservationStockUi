@@ -15,7 +15,7 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="inventory_log"/>
+            <uiComponent name="inventory_reservation"/>
         </referenceContainer>
     </body>
 </page>

@@ -140,4 +140,15 @@ class Helper extends AbstractHelper
     {
         return $this->getStoreConfig(self::KEY_ENABLE_LOGGING);
     }
+
+    public function getClearPeriod()
+    {
+        $day = $this->getStoreConfig(self::KEY_LOG_KEEP_DAY);
+        $now = new \DateTime();
+        if ((int)$day > 0) {
+            $now = $now->sub(new \DateInterval("P{$day}D"));
+        }
+
+        return $now->format('Y-m-d H:i:s');
+    }
 }
