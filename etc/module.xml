@@ -16,6 +16,7 @@
         <sequence>
             <module name="Magento_InventorySalesApi" />
             <module name="Magento_InventorySalesAdminUi" />
+            <module name="Magento_InventoryReservations" />
         </sequence>
     </module>
 </config>

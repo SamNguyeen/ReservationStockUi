@@ -85,6 +85,14 @@
                 <label translate="true">Stock</label>
             </settings>
         </column>
+        <column name="source_code" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Magenest\ReservationStockUi\Model\Source\Stock"/>
+                <dataType>select</dataType>
+                <label translate="true">Source Code</label>
+            </settings>
+        </column>
         <column name="sku">
             <settings>
                 <filter>text</filter>
