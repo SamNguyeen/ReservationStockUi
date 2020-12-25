@@ -15,7 +15,7 @@
     <default>
         <cataloginventory>
             <reservation>
-                <enabled_log>1</enabled_log>
+                <enabled_log>0</enabled_log>
                 <log_interval>60</log_interval>
             </reservation>
         </cataloginventory>

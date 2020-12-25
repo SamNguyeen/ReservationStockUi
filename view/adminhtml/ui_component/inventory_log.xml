@@ -88,7 +88,7 @@
         <column name="source_code" component="Magento_Ui/js/grid/columns/select">
             <settings>
                 <filter>select</filter>
-                <options class="Magenest\ReservationStockUi\Model\Source\Stock"/>
+                <options class="Magenest\ReservationStockUi\Model\Source\InventorySource"/>
                 <dataType>select</dataType>
                 <label translate="true">Source Code</label>
             </settings>
