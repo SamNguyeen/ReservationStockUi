@@ -10,15 +10,17 @@
  * @package Magenest_ReservationStockUi
  */
 
-namespace Magenest\ReservationStockUi\Controller\Adminhtml\Reservation;
+namespace Magenest\ReservationStockUi\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
+use Magento\Framework\App\ResponseInterface;
 use Magenest\ReservationStockUi\Helper\Helper;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magenest\ReservationStockUi\Model\ResourceModel\InventoryLog;
 
-class MassForceDelete extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class MassRestore extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     /**
      * Authorization level of a basic admin session
@@ -38,22 +40,27 @@ class MassForceDelete extends \Magento\Backend\App\Action implements HttpPostAct
 
     protected $helper;
 
+    protected $logResource;
+
     /**
-     * MassForceDelete constructor.
+     * MassRestore constructor.
      *
      * @param Context $context
      * @param Filter $filter
-     * @param Helper $helper
+     * @param InventoryLog $logResource
+     * @param \Magenest\ReservationStockUi\Helper\Helper $helper
      * @param \Magenest\ReservationStockUi\Model\ResourceModel\DeleteReservationStock $deleteReservation
-     * @param \Magenest\ReservationStockUi\Model\ResourceModel\Reservation\Grid\CollectionFactory $collectionFactory
+     * @param \Magenest\ReservationStockUi\Model\ResourceModel\InventoryLog\Grid\CollectionFactory $collectionFactory
      */
     public function __construct(
         Context $context,
         Filter $filter,
+        \Magenest\ReservationStockUi\Model\ResourceModel\InventoryLog $logResource,
         \Magenest\ReservationStockUi\Helper\Helper $helper,
         \Magenest\ReservationStockUi\Model\ResourceModel\DeleteReservationStock $deleteReservation,
-        \Magenest\ReservationStockUi\Model\ResourceModel\Reservation\Grid\CollectionFactory $collectionFactory
+        \Magenest\ReservationStockUi\Model\ResourceModel\InventoryLog\Grid\CollectionFactory $collectionFactory
     ) {
+        $this->logResource = $logResource;
         $this->helper = $helper;
         $this->filter = $filter;
         $this->deleteReservation = $deleteReservation;
@@ -68,22 +75,17 @@ class MassForceDelete extends \Magento\Backend\App\Action implements HttpPostAct
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        if (!$this->helper->isEnableLog() || !$this->helper->getStoreConfig(Helper::KEY_FORCE_DELETE)) {
-            $this->messageManager->addNoticeMessage(__('This features need to be enabled in Catalog > Inventory > Reservation Stock with Qty/Reservation Log is enabled too.'));
-
-            return $resultRedirect->setPath('*/*/');
-        }
         try {
             $collection = $this->filter->getCollection($this->collectionFactory->create());
             $collectionSize = $collection->getSize();
 
             $ids = [];
-            foreach ($collection as $reservation) {
-                $ids[] = $reservation->getId();
+            foreach ($collection as $log) {
+                $ids[] = $log->getId();
             }
-            $this->deleteReservation->transferToLog($ids);
-            $this->deleteReservation->deleteBatch($ids);
-            $this->messageManager->addSuccessMessage(__('A total of %1 reservation(s) have been deleted.', $collectionSize));
+            $this->deleteReservation->restore($collection->getItems());
+            $this->logResource->deleteBatch($ids);
+            $this->messageManager->addSuccessMessage(__('A total of %1 reservation(s) have been restored.', $collectionSize));
         } catch (\Throwable $e) {
             $this->helper->debug($e);
             $this->messageManager->addErrorMessage(__('Something went wrong, please try again later.'));

@@ -25,6 +25,7 @@ class Helper extends AbstractHelper
 {
     const KEY_ENABLE_LOGGING = 'cataloginventory/reservation/enabled_log';
     const KEY_LOG_KEEP_DAY = 'cataloginventory/reservation/log_interval';
+    const KEY_FORCE_DELETE = 'cataloginventory/reservation/force_delete';
 
     protected $serializer;
 

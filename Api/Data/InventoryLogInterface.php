@@ -14,6 +14,7 @@ namespace Magenest\ReservationStockUi\Api\Data;
 
 interface InventoryLogInterface
 {
+    const LOG_ID = 'log_id';
     const LOG_TYPE = 'log_type';
     const STOCK_ID = 'stock_id';
     const SOURCE_CODE = 'source_code';
