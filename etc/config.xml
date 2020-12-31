@@ -17,6 +17,7 @@
             <reservation>
                 <enabled_log>0</enabled_log>
                 <log_interval>60</log_interval>
+                <force_delete>0</force_delete>
             </reservation>
         </cataloginventory>
     </default>

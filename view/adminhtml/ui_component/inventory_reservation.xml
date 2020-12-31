@@ -47,6 +47,19 @@
         <exportButton name="export_button"/>
         <filters name="listing_filters" />
         <paging name="listing_paging"/>
+        <massaction name="listing_massaction" component="Magenest_ReservationStockUi/js/grid/tree-massactions">
+            <action name="force_delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Force Delete Reservation</title>
+                    </confirm>
+                    <url path="inventory/reservation/massForceDelete"/>
+                    <type>force_delete</type>
+                    <label translate="true">Force Delete</label>
+                </settings>
+            </action>
+        </massaction>
     </listingToolbar>
     <columns name="inventory_reservation_columns">
         <settings>
