@@ -17,6 +17,7 @@ use Magento\Ui\Component\MassAction\Filter;
 use Magento\Framework\App\ResponseInterface;
 use Magenest\ReservationStockUi\Helper\Helper;
 use Magento\Framework\Controller\ResultFactory;
+use Magenest\ReservationStockUi\Model\Source\LogType;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magenest\ReservationStockUi\Model\ResourceModel\InventoryLog;
 
@@ -27,7 +28,7 @@ class MassRestore extends \Magento\Backend\App\Action implements HttpPostActionI
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Magenest_ReservationStockUi::delete_reservation';
+    const ADMIN_RESOURCE = 'Magenest_ReservationStockUi::restore_reservation';
 
     /**
      * @var Filter
@@ -81,6 +82,9 @@ class MassRestore extends \Magento\Backend\App\Action implements HttpPostActionI
 
             $ids = [];
             foreach ($collection as $log) {
+                if ($log->getLogType() == LogType::QTY) {
+                    continue;
+                }
                 $ids[] = $log->getId();
             }
             $this->deleteReservation->restore($collection->getItems());
