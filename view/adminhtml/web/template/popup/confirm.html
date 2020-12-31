@@ -1,11 +1,11 @@
 <div>
 	<p><%- confirmMessage %></p>
-	<p><%- noticeMsg %></p>
+	<p><%= _.i18n('Once you confirm and press %1Confirm Delete%2, it cannot be undone or recovered.').replace('%1', '<strong>').replace('%2', '</strong>') %></p>
 	<div>
 		<label for="delete-reservation-confirm">
-			<strong><%- confirmMsg %></strong>
+			<strong><%= _.i18n('To confirm, please type: %1').replace('%1', '<em>confirm</em>') %></strong>
 		</label>
 		<input class="admin__control-text delete-reservation-input" name="confirm" id="delete-reservation-confirm" />
-		<div id="confirm-error-message" class="admin__field-error" style="display: none"><%- errorMsg %></div>
+		<div id="confirm-error-message" class="admin__field-error" style="display: none"><%= _.i18n('Please type confirm in this field.') %></div>
 	</div>
 </div>

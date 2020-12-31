@@ -105,10 +105,7 @@ define([
 
         _getContent: function (confirmMessage) {
             var confirmPopup = template(confirmTpl, {
-                confirmMessage: confirmMessage,
-                noticeMsg: $.mage.__('Once you confirm and press <strong>Confirm Delete</strong>, it cannot be undone or recovered.'),
-                confirmMsg: $.mage.__('To confirm, please type: <em>confirm</em>'),
-                errorMsg: $.mage.__('Please type confirm in this field.')
+                confirmMessage: confirmMessage
             });
 
             return confirmPopup;
