@@ -52,7 +52,7 @@
                 <settings>
                     <confirm>
                         <title translate="true">Force Delete Selected Reservations?</title>
-                        <message translate="true">You’re about to permanently delete the reservation records.</message>
+                        <message translate="true">You’re about to delete the reservation records.</message>
                     </confirm>
                     <url path="inventory/reservation/massForceDelete"/>
                     <type>force_delete</type>

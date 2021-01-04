@@ -56,7 +56,7 @@
                     </confirm>
                     <url path="inventory/log/massRestore"/>
                     <type>restore</type>
-                    <label translate="true">Restore</label>
+                    <label translate="true">Restore Reservation</label>
                 </settings>
             </action>
         </massaction>
