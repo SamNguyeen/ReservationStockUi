@@ -14,6 +14,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Magenest_ReservationStockUi::catalog_reservation" title="Reservation Stock" translate="title" module="Magenest_ReservationStockUi" sortOrder="30" parent="Magento_Catalog::inventory" action="inventory/reservation/" resource="Magenest_ReservationStockUi::catalog_reservation"/>
-        <add id="Magenest_ReservationStockUi::inventory_log" title="Inventory Log" translate="title" module="Magenest_ReservationStockUi" sortOrder="35" parent="Magento_Catalog::inventory" action="inventory/log/" resource="Magenest_ReservationStockUi::inventory_log" dependsOnConfig="cataloginventory/reservation/enabled_log"/>
     </menu>
 </config>

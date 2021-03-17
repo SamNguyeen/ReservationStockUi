@@ -44,22 +44,7 @@
         </settings>
         <bookmark name="bookmarks" />
         <columnsControls name="columns_controls"/>
-        <exportButton name="export_button"/>
-        <filters name="listing_filters" />
         <paging name="listing_paging"/>
-        <massaction name="listing_massaction" component="Magenest_ReservationStockUi/js/grid/tree-massactions">
-            <action name="force_delete">
-                <settings>
-                    <confirm>
-                        <title translate="true">Force Delete Selected Reservations?</title>
-                        <message translate="true">You’re about to delete the reservation records.</message>
-                    </confirm>
-                    <url path="inventory/reservation/massForceDelete"/>
-                    <type>force_delete</type>
-                    <label translate="true">Force Delete</label>
-                </settings>
-            </action>
-        </massaction>
     </listingToolbar>
     <columns name="inventory_reservation_columns">
         <settings>
